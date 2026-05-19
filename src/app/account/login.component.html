@@ -1,0 +1,82 @@
+<div class="login-bg">
+  <div class="bg-circle bg-circle--1"></div>
+  <div class="bg-circle bg-circle--2"></div>
+
+  <div class="login-card">
+    <div class="brand">
+      <div class="brand-icon" style="background: transparent;">
+        <svg width="28" height="28" viewBox="0 0 250 250" xmlns="http://www.w3.org/2000/svg">
+          <path fill="#DD0031" d="M125 30L31.9 63.2l14.2 123.1L125 230l78.9-43.7 14.2-123.1z" />
+          <path fill="#C3002F" d="M125 30v22.2-.1V230l78.9-43.7 14.2-123.1L125 30z" />
+          <path fill="#FFFFFF" d="M125 52.1L66.8 182.6h21.7l11.7-29.2h49.4l11.7 29.2H183L125 52.1zm17 83.3h-34l17-40.9 17 40.9z" />
+        </svg>
+      </div>
+      <span class="brand-name">angular-21-boilerplate-mapait</span>
+    </div>
+
+    <h1 class="login-title">Welcome back</h1>
+    <p class="login-sub">Sign in to your account to continue</p>
+
+    <div *ngIf="errorMessage" class="error-box">
+      <span>{{ errorMessage }}</span>
+    </div>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="field-wrap">
+        <label class="field-label">Email</label>
+        <div class="input-wrap">
+          <input formControlName="email" type="email" class="field-input" placeholder="you@example.com"
+            [class.input-error]="email?.invalid && email?.touched" />
+          <svg class="input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+            <polyline points="22,6 12,13 2,6"></polyline>
+          </svg>
+        </div>
+        <span class="field-error" *ngIf="email?.invalid && email?.touched">
+          Please enter a valid email
+        </span>
+      </div>
+
+      <div class="field-wrap">
+        <label class="field-label">Password</label>
+        <div class="input-wrap">
+          <input formControlName="password" [type]="showPassword ? 'text' : 'password'"
+            class="field-input" placeholder="••••••••"
+            [class.input-error]="password?.invalid && password?.touched" />
+          <svg class="input-icon input-icon--btn" (click)="togglePassword()" width="16" height="16"
+            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="cursor:pointer">
+            <path *ngIf="!showPassword" d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+            <circle *ngIf="!showPassword" cx="12" cy="12" r="3"></circle>
+            <path *ngIf="showPassword" d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+            <line *ngIf="showPassword" x1="1" y1="1" x2="23" y2="23"></line>
+          </svg>
+        </div>
+        <span class="field-error" *ngIf="password?.invalid && password?.touched">
+          Password is required
+        </span>
+      </div>
+
+      <div class="row-options">
+        <label class="remember">
+          <input formControlName="rememberMe" type="checkbox" /> Remember me
+        </label>
+        <a routerLink="/account/forgot-password" class="forgot">Forgot password?</a>
+      </div>
+
+      <button type="submit" class="btn-login" [disabled]="isLoading">
+        <span *ngIf="!isLoading">Sign in</span>
+        <span *ngIf="isLoading" class="spinner"></span>
+      </button>
+    </form>
+
+    <div class="divider">
+      <div class="divider-line"></div>
+      <span class="divider-text">no account yet?</span>
+      <div class="divider-line"></div>
+    </div>
+
+    <a routerLink="/account/register" class="btn-register">Create an account</a>
+
+    <p class="footer-text">Secure access to your workspace</p>
+  </div>
+</div>

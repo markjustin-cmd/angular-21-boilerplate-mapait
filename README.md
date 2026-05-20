@@ -1,5 +1,9 @@
 # Angular21BoilerplateMapait
 
+## Live Deployment Links
+* **Frontend (Angular):** [Insert Live Frontend URL Here]
+* **Backend (Node.js/MySQL):** [Insert Live Backend URL Here]
+
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.9.
 
 ## Development server

@@ -23,16 +23,38 @@
                     <input type="email" formControlName="email" class="form-control form-control-lg bg-light border-0" placeholder="Enter email address" />
                 </div>
             </div>
-            
+
             <hr class="text-muted opacity-10 my-4">
-            
+
+            <h5 class="fw-bold mb-3">Change Password <span class="text-muted fw-normal fs-6">(leave blank to keep current)</span></h5>
+            <div class="row g-4 mb-4">
+                <div class="col-md-6">
+                    <label class="form-label fw-medium text-secondary small text-uppercase">New Password</label>
+                    <input type="password" formControlName="password" class="form-control form-control-lg bg-light border-0" placeholder="Enter new password"
+                        [ngClass]="{ 'is-invalid': submitted && f['password'].errors }" />
+                    <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
+                        <div *ngIf="f['password'].errors['minlength']">Password must be at least 6 characters</div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label fw-medium text-secondary small text-uppercase">Confirm Password</label>
+                    <input type="password" formControlName="confirmPassword" class="form-control form-control-lg bg-light border-0" placeholder="Confirm new password"
+                        [ngClass]="{ 'is-invalid': submitted && f['confirmPassword'].errors }" />
+                    <div *ngIf="submitted && f['confirmPassword'].errors" class="invalid-feedback">
+                        <div *ngIf="f['confirmPassword'].errors['mustMatch']">Passwords must match</div>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="text-muted opacity-10 my-4">
+
             <div class="d-flex flex-wrap gap-2 align-items-center">
                 <button [disabled]="submitting" class="btn btn-primary px-4 py-2 rounded-3 fw-medium d-flex align-items-center">
                     <span *ngIf="submitting" class="spinner-border spinner-border-sm me-2"></span>
                     Update Profile
                 </button>
                 <a routerLink=".." href="" class="btn btn-light px-4 py-2 rounded-3 fw-medium text-secondary border">Cancel</a>
-                
+
                 <div class="ms-auto mt-3 mt-md-0">
                     <button type="button" (click)="onDelete()" [disabled]="deleting" class="btn btn-outline-danger px-4 py-2 rounded-3 fw-medium d-flex align-items-center">
                         <span *ngIf="deleting" class="spinner-border spinner-border-sm me-2"></span>
